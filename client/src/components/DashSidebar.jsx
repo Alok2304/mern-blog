@@ -31,9 +31,6 @@ export default function DashSidebar() {
 					<Sidebar.Item icon={HiArrowSmRight} className="cursor-pointer">
 						Sign Out
 					</Sidebar.Item>
-					<Sidebar.Item active icon={HiUser} label={"User"} labelColor="dark">
-						Profile
-					</Sidebar.Item>
 				</Sidebar.ItemGroup>
 			</Sidebar.Items>
 		</Sidebar>
