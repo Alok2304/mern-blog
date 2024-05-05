@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Alert, Button, Modal, TextInput } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import {
 	getDownloadURL,
 	getStorage,
@@ -23,7 +24,7 @@ import { useDispatch } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 export default function DashProfile() {
-	const { currentUser, error } = useSelector((state) => state.user);
+	const { currentUser, error, loading } = useSelector((state) => state.user);
 	const [imageFile, setImageFile] = useState(null);
 	const [imageFileUrl, setImageFileUrl] = useState(null);
 	const filePickerRef = useRef();
@@ -227,9 +228,21 @@ export default function DashProfile() {
 					gradientDuoTone="purpleToBlue"
 					outline
 					className="uppercase"
+					disabled={loading || imageFileUploading}
 				>
-					Update
+					{loading ? "Loading..." : "Update"}
 				</Button>
+				{currentUser.isAdmin && (
+					<Link to={"/create-post"}>
+						<Button
+							type="button"
+							gradientDuoTone="pinkToOrange"
+							className="w-full"
+						>
+							Create a post
+						</Button>
+					</Link>
+				)}
 			</form>
 			<div className="text-red-500 flex justify-between mt-4">
 				<span onClick={() => setShowModal(true)} className="cursor-pointer">
